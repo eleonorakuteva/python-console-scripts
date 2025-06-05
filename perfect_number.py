@@ -1,4 +1,4 @@
-# ====== git hub - PERFECT NUMBER ======
+
 
 def find_perfect_number(given_number:int):
     """
