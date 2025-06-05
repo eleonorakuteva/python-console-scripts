@@ -23,9 +23,11 @@ def calculate_factorial(number_to_calculate_factorial: int) -> int:
 
 
 # User interaction
+print("A factorial is the product of an integer and all the integers below it,\n"
+      "e.g., 5! = 5 × 4 × 3 × 2 × 1 = 120")
 print("This program calculates the factorial of a non-negative integer.")
 try:
-    user_input = int(input("Enter a non-negative integer: "))
+    user_input = int(input("\nEnter a non-negative integer: "))
     if user_input < 0:
         print("Factorial is not defined for negative numbers.")
     else:
