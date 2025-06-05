@@ -1,7 +1,7 @@
 # python-console-scripts
 ***A collection of small Python scripts and console-based exercises for practice and learning.***  
 
-## password_report.py:  
+## 🐍 password_report.py  
 This Python script analyzes a given password and generates a detailed report on its composition and estimated strength.  
 #### 🔎 Includes:
 - Loops  
@@ -10,7 +10,7 @@ This Python script analyzes a given password and generates a detailed report on 
 - Boolean logic  
 - Basic string formatting
 
-## calculate_factorial.py:  
+## 🐍 calculate_factorial.py  
 This Python script calculates the factorial of a non-negative integer entered by the user via the console.  
 A factorial is the product of an integer and all the positive integers below it.  
 For example:  5! = 5 × 4 × 3 × 2 × 1 = 120  
@@ -20,7 +20,7 @@ For example:  5! = 5 × 4 × 3 × 2 × 1 = 120
 - Custom function with docstring  
 - Basic error handling and user guidance
 
-## perfect_number.py:  
+## 🐍 perfect_number.py  
 This Python script checks whether a given positive integer is a perfect number or not.  
 A perfect number is a number that is equal to the sum of its proper positive divisors (excluding itself).  
 For example:  
