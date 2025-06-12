@@ -18,11 +18,10 @@ def find_perfect_number(given_number:int):
     # print(list_of_proper_positive_divisors)
 
     if sum(list_of_proper_positive_divisors) == given_number:
-        returned_result = "We have a perfect number!"
+        return "We have a perfect number!"
     else:
-        returned_result = "It's not so perfect."
+        return "It's not so perfect."
 
-    return returned_result
 
 
 try:
@@ -32,5 +31,6 @@ try:
     else:
         result = find_perfect_number(user_num)
         print(result)
+
 except ValueError:
     print("Invalid input. Please enter a whole, positive number.")
