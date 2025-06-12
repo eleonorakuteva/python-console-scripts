@@ -10,18 +10,13 @@ def find_perfect_number(given_number:int):
         "We have a perfect number!" - if the number is perfect.
         "It's not so perfect." - if the number is NOT perfect.
     """
-
-    list_of_proper_positive_divisors:list = []
+    sum_of_proper_positive_divisors:int = 0
     for previous_num in range(1, (given_number//2) +1):
         if given_number % previous_num == 0:
-            list_of_proper_positive_divisors.append(previous_num)
-    # print(list_of_proper_positive_divisors)
-
-    if sum(list_of_proper_positive_divisors) == given_number:
+            sum_of_proper_positive_divisors += previous_num
+    if sum_of_proper_positive_divisors == given_number:
         return "We have a perfect number!"
-    else:
-        return "It's not so perfect."
-
+    return "It's not so perfect."
 
 
 try:
