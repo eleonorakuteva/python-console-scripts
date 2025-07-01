@@ -43,7 +43,7 @@ class User:
         if book in library.books:
             self.borrowed_books.append(book)
             library.books.remove(book)
-            print(f"{self.full_name()} borrowed '{book}' from {library.library_name}")
+            print(f"{self.full_name()} borrowed '{book}' from {library.library_name}.")
         else:
             print(f"'{book}' is not available in {library.library_name}")
 
@@ -51,6 +51,9 @@ class User:
         if book in self.borrowed_books:
             self.borrowed_books.remove(book)
             library.books.append(book)
+            print(f"{self.full_name()} returned '{book} from {library.library_name}.")
+        else:
+            print(f"The book: '{book}' is not borrowed by {self.full_name()}")
 
 
 library1 = Library("City Library", ["1984", "Python Basics", "The Hobbit"])
