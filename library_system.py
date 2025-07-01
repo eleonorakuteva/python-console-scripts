@@ -27,6 +27,13 @@ class User:
     def get_user_count(cls):
         return User._user_count
 
+    # Card number must be exactly 8 digits
+    @staticmethod
+    def is_card_valid(card:str):
+        if len(card) == 8 and card.isdigit():
+            return "The card is valid"
+        return "Card is NOT valid"
+
     def __init__(self, first_name:str, last_name:str):
         self.first_name = first_name
         self.last_name = last_name
@@ -68,6 +75,9 @@ print(User.get_user_count())
 user1.borrow_book("1984", library1)
 user2.borrow_book("Python Basics", library1)
 library1.display_books()  # Only one book
+
+print(user1.is_card_valid("11223344"))
+
 
 
 #
