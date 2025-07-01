@@ -1,16 +1,27 @@
+"""
+Library Management System
+Description: This program defines a Library system with Users and Librarians who can manage books.
+"""
+
 class Library:
+
     _total_libraries = 0
+
     def __init__(self, library_name:str, books = None):
         self.library_name = library_name
         self.books = books if books is not None else []
         Library._total_libraries += 1
+
+    def __repr__(self):
+        return (f"Library name: {self.library_name}\n"
+                f"Library books: {self.books or 'None'}")
 
     def display_books(self):
         if not self.books:
             print(f"There are no books in the library {self.library_name}")
         elif len(self.books) > 1:
             print(f"There are {len(self.books)} books:\n"
-                      f" -> {", ".join(self.books)}")
+                      f" -> {', '.join(self.books)}")
         elif len(self.books) == 1:
             print(f"There is only one book left:\n"
                   f" -> {self.books[0]}")
@@ -35,6 +46,9 @@ class User:
         self.borrowed_books = []
         User._user_count += 1
 
+    def __repr__(self):
+        return f"User: {self.full_name()} | Borrowed books: {self.borrowed_books or 'None'}"
+
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -50,7 +64,7 @@ class User:
         if book in self.borrowed_books:
             self.borrowed_books.remove(book)
             library.books.append(book)
-            print(f"{self.full_name()} returned '{book} from {library.library_name}.")
+            print(f"{self.full_name()} returned '{book}' from {library.library_name}.")
         else:
             print(f"The book: '{book}' is not borrowed by {self.full_name()}.")
 
@@ -62,47 +76,50 @@ class Librarian(User):
 
     def add_book(self, book, library):
         if book not in library.books:
-            print(f"{self.full_name()} added '{book} in {library.library_name}.")
+            print(f"{self.full_name()} added '{book} to {library.library_name}.")
             library.books.append(book)
         else:
-            print(f"{book} already exist in {library.library_name}.")
+            print(f"'{book}' already exist in {library.library_name}.")
 
     def remove_book(self, book, library):
         if book in library.books:
-            print(f"{self.full_name()} removes '{book}' in {library.library_name}.")
+            print(f"{self.full_name()} removed '{book}' from {library.library_name}.")
             library.books.remove(book)
         else:
             print(f"The book: '{book}' not found in {library.library_name}.")
 
 
 
-library1 = Library("City Library", ["1984", "Python Basics", "The Hobbit"])
+if __name__ == "__main__":
 
-user1 = User("Anna", "Ivanova")
-print(user1.full_name())  # Anna Ivanova
+    # Create Libraries:
+    library1 = Library("City Library", ["1984", "Python Basics", "The Hobbit"])
+    library2 = Library("GreenLib")
 
-user1.borrow_book("1984", library1)
-library1.display_books()  # Should no longer include "1984"
+    # Create Users:
+    user1 = User("Eleonora", "Kuteva")
+    user2 = User("Emma", "White")
 
-user1.return_book("1984", library1)
-library1.display_books()  # "1984" is back
-#
-print(User.get_user_count())  # e.g., 1
-user2 = User("Emma", "White")
-user2.first_name = "Comma"
-print(user2.full_name())
-print(User.get_user_count())
+    # User Interactions:
+    user1.borrow_book("1984", library1)
+    library1.display_books()
 
-user1.borrow_book("1984", library1)
-user2.borrow_book("Python Basics", library1)
-library1.display_books()  # Only one book
+    user1.return_book("1984", library1)
+    library1.display_books()
 
-#
-print(user1.is_card_valid("12345678"))  # True/False
+    # User Info:
+    print(User.get_user_count())
+    print(user1.full_name())
+    print(user2.full_name())
 
+    # Card Validation:
+    print(user1.is_card_valid("12345678"))  # True
 
-librarian1 = Librarian("Sonya", "White", "librarian_1")
-librarian1.add_book("How to kill a mockingbird", library1)
-librarian1.add_book("How to kill a mockingbird", library1)
-librarian1.remove_book("How to kill a mockingbird", library1)
-librarian1.remove_book("How to kill a mockingbird", library1)
+    # Librarian Actions:
+    librarian1 = Librarian("Sonya", "White", "librarian_1")
+    librarian1.add_book("To Kill a Mockingbird", library1)
+    librarian1.remove_book("To Kill a Mockingbird", library1)
+
+    # Print Final States:
+    print(user1)
+    print(library1)
