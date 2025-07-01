@@ -78,10 +78,6 @@ user1.borrow_book("1984", library1)
 user2.borrow_book("Python Basics", library1)
 library1.display_books()  # Only one book
 
-print(user1.is_card_valid("11223344"))
-
-
 
 #
-# print(User.is_valid_card("12345678"))  # True
-# print(User.is_valid_card("abc"))       # False
+print(user1.is_card_valid("12345678"))  # True/False
