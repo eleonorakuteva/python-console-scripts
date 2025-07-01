@@ -16,7 +16,6 @@ class Library:
                   f" -> {self.books[0]}")
 
 
-
 class User:
 
     _user_count = 0
@@ -45,7 +44,7 @@ class User:
             library.books.remove(book)
             print(f"{self.full_name()} borrowed '{book}' from {library.library_name}.")
         else:
-            print(f"'{book}' is not available in {library.library_name}")
+            print(f"'{book}' is not available in {library.library_name}.")
 
     def return_book(self, book, library):
         if book in self.borrowed_books:
@@ -53,7 +52,28 @@ class User:
             library.books.append(book)
             print(f"{self.full_name()} returned '{book} from {library.library_name}.")
         else:
-            print(f"The book: '{book}' is not borrowed by {self.full_name()}")
+            print(f"The book: '{book}' is not borrowed by {self.full_name()}.")
+
+
+class Librarian(User):
+    def __init__(self, first_name, last_name, librarian_id:str):
+        super().__init__(first_name, last_name)
+        self.librarian_id = librarian_id
+
+    def add_book(self, book, library):
+        if book not in library.books:
+            print(f"{self.full_name()} added '{book} in {library.library_name}.")
+            library.books.append(book)
+        else:
+            print(f"{book} already exist in {library.library_name}.")
+
+    def remove_book(self, book, library):
+        if book in library.books:
+            print(f"{self.full_name()} removes '{book}' in {library.library_name}.")
+            library.books.remove(book)
+        else:
+            print(f"The book: '{book}' not found in {library.library_name}.")
+
 
 
 library1 = Library("City Library", ["1984", "Python Basics", "The Hobbit"])
@@ -73,11 +93,16 @@ user2.first_name = "Comma"
 print(user2.full_name())
 print(User.get_user_count())
 
-
 user1.borrow_book("1984", library1)
 user2.borrow_book("Python Basics", library1)
 library1.display_books()  # Only one book
 
-
 #
 print(user1.is_card_valid("12345678"))  # True/False
+
+
+librarian1 = Librarian("Sonya", "White", "librarian_1")
+librarian1.add_book("How to kill a mockingbird", library1)
+librarian1.add_book("How to kill a mockingbird", library1)
+librarian1.remove_book("How to kill a mockingbird", library1)
+librarian1.remove_book("How to kill a mockingbird", library1)
