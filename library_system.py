@@ -2,20 +2,18 @@ class Library:
     _total_libraries = 0
     def __init__(self, library_name:str, books = None):
         self.library_name = library_name
-        self.books = books
+        self.books = books if books is not None else []
         Library._total_libraries += 1
 
     def display_books(self):
-        if self.books is None:
+        if not self.books:
             print(f"There are no books in the library {self.library_name}")
-        else:
-            books_as_string = ", ".join(self.books)
-            if len(self.books) > 1:
-                print(f"There are {len(self.books)} books:\n"
-                      f"{books_as_string}")
-            if len(self.books) == 1:
-                print(f"There is only one book left:\n"
-                      f"{books_as_string}")
+        elif len(self.books) > 1:
+            print(f"There are {len(self.books)} books:\n"
+                      f" -> {", ".join(self.books)}")
+        elif len(self.books) == 1:
+            print(f"There is only one book left:\n"
+                  f" -> {self.books[0]}")
 
 
 
@@ -30,9 +28,7 @@ class User:
     # Card number must be exactly 8 digits
     @staticmethod
     def is_card_valid(card:str):
-        if len(card) == 8 and card.isdigit():
-            return "The card is valid"
-        return "Card is NOT valid"
+        return len(card) == 8 and card.isdigit()
 
     def __init__(self, first_name:str, last_name:str):
         self.first_name = first_name
@@ -47,6 +43,9 @@ class User:
         if book in library.books:
             self.borrowed_books.append(book)
             library.books.remove(book)
+            print(f"{self.full_name()} borrowed '{book}' from {library.library_name}")
+        else:
+            print(f"'{book}' is not available in {library.library_name}")
 
     def return_book(self, book, library):
         if book in self.borrowed_books:
