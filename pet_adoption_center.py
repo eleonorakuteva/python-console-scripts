@@ -11,6 +11,12 @@ class AdoptionCenter:
         return (f"{self.name} is a adoption center, where you can adopt your future pet!\n"
                 f"In the center there are registered animals: {", ".join(self.list_of_pets)} ")
 
+    def list_available_pets(self):
+        pass
+
+    def list_all_pets(self):
+        pass
+
 class Pet:
     def __init__(self, name:str, species:str, age:int):
         self.name = name
