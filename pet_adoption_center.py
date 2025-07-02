@@ -15,11 +15,14 @@ class AdoptionCenter:
 
     def __repr__(self):
         return (f"{self.name} is a adoption center, where you can adopt your future pet!\n"
-                f"In the center we have this available animals: {self.list_of_pets} ")
+                f"{self.list_available_pets()} ")
 
     def list_available_pets(self):
-        return (f"Available pets you can adopt:\n"
-                f"{'\n'.join(self.list_of_pets)}")
+
+        available_pets = [f"{pet}" for pet in self.list_of_pets]
+
+        return (f"Available pets you can adopt:\n-> "
+                f"{"\n-> ".join(available_pets)}")
 
 
 class Pet:
@@ -46,14 +49,22 @@ class Adopter:
         self.name = name
         self.adopted_pets_by_user = adopted_pets_by_user if adopted_pets_by_user is not None else []
 
-    def adopt_pet(self, pet:str, center:str):
-        pass
+    def adopt_pet(self, pet, center):
+        if pet in center.list_of_pets:
+            self.adopted_pets_by_user.append(pet)
+            center.list_of_pets.remove(pet)
+        else:
+            print(f"The {pet.species.lower()} {pet.name.title()} is NOT in Adoption center - {center.name}.\n"
+                  f"You can NOT adopt it from there.")
 
-    def return_pet(self, pet:str, center:str):
-        pass
+    def return_pet(self, pet, center):
+        center.list_of_pets.append(pet)
+        self.adopted_pets_by_user.remove(pet)
 
     def user_adopted_pets(self):
-        pass
+        adopted_pets = [f"{pet}" for pet in self.adopted_pets_by_user]
+        return f"The adopter {self.name} adopted the following animals: {adopted_pets}"
+
 
     def __repr__(self):
         return (f"Adopter name: {self.name}.\n"
@@ -73,8 +84,12 @@ class Worker(Adopter):
             center.list_of_pets.append(pet)
 
     def remove_pet(self, pet, center):
-        if self.is_id_valid() and pet in center:
-            center.list_of_pets.remove(pet)
+        if self.is_id_valid():
+            if pet in center.list_of_pets:
+                return center.list_of_pets.remove(pet)
+            else:
+                print(f"The {pet.species.lower()} {pet.name.title()} is NOT in Adoption center - {center.name}.\n"
+                      f"Worker can not remove it from adoption center.")
 
     def __repr__(self):
         return (f"Worker name: {self.name}.\n"
@@ -87,14 +102,21 @@ if __name__ == "__main__":
 
     pet1 = Pet("Bella", "Dog", 3)
     pet2 = Pet("Luna", "Cat", 1)
+    pet3 = Pet("Max", "Dog", 2)
 
 
     worker = Worker("James", "10001023")
 
     worker.add_pet(pet1, center1)
     worker.add_pet(pet2, center1)
+    print(center1.list_available_pets())
 
-    print(center1)
+    adopter1 = Adopter("Ciara")
+    adopter1.adopt_pet(pet1, center1)
+    adopter1.user_adopted_pets()
+    # print(adopter1)
+
+
 
 
     # print(center1.list_available_pets())
