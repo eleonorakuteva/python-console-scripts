@@ -8,17 +8,18 @@ Staff (workers) can add or remove pets from the center.
 
 
 class AdoptionCenter:
-    def __init__(self, name:str, dict_of_pets = None):
+
+    def __init__(self, name:str, list_of_pets = None):
         self.name = name
-        self.dict_of_pets = dict_of_pets if dict_of_pets is not None else {}
+        self.list_of_pets = list_of_pets if list_of_pets is not None else []
 
     def __repr__(self):
         return (f"{self.name} is a adoption center, where you can adopt your future pet!\n"
-                f"In the center there are registered animals: {self.dict_of_pets} ")
+                f"In the center we have this available animals: {self.list_of_pets} ")
 
     def list_available_pets(self):
         return (f"Available pets you can adopt:\n"
-                f"{self.dict_of_pets}")
+                f"{'\n'.join(self.list_of_pets)}")
 
 
 class Pet:
@@ -29,13 +30,16 @@ class Pet:
         self.is_adopted = False
 
     def pet_dict(self):
-        return {self.species :
-                    [{"name" : self.name}, {"age" : self.age}]
+        return {self.species : {"name" : self.name,
+                                "age" : self.age,}
                 }
 
-    def search_by_species(self):
-        matches = {key, value for key, value in self.pet_dict}
+    def search_by_species(self, species_key):
+        matches = {species_key for species_key, value in self.pet_dict()}
         return matches
+
+    def __repr__(self):
+        return f"{self.name} is a {self.species}, age {self.age}."
 
 class Adopter:
     def __init__(self, name:str, adopted_pets_by_user = None):
@@ -64,13 +68,13 @@ class Worker(Adopter):
     def is_id_valid(self):
         return len(self._worker_id) == 8 and self._worker_id.isdigit()
 
-    def add_pet(self, pet, adoption_center):
+    def add_pet(self, pet, center):
         if self.is_id_valid():
-            pass
+            center.list_of_pets.append(pet)
 
-    def remove_pet(self, pet, adoption_center):
-        if self.is_id_valid():
-            pass
+    def remove_pet(self, pet, center):
+        if self.is_id_valid() and pet in center:
+            center.list_of_pets.remove(pet)
 
     def __repr__(self):
         return (f"Worker name: {self.name}.\n"
@@ -78,22 +82,35 @@ class Worker(Adopter):
 
 
 if __name__ == "__main__":
-    center = AdoptionCenter("SunnyPaws")
+    center1 = AdoptionCenter("SunnyPaws")
+
 
     pet1 = Pet("Bella", "Dog", 3)
     pet2 = Pet("Luna", "Cat", 1)
 
+
     worker = Worker("James", "10001023")
-    adopter = Adopter("Maria", "10001024")
-    print(worker)
 
-    worker.add_pet(pet1, center)
-    worker.add_pet(pet2, center)
+    worker.add_pet(pet1, center1)
+    worker.add_pet(pet2, center1)
 
-    center.list_available_pets()
+    print(center1)
 
-    adopter.adopt_pet(pet1, center)
-    center.list_available_pets()
 
-    # adopter.return_pet(pet1, center)
-    # center.list_available_pets()
+    # print(center1.list_available_pets())
+    # adopter1.adopt_pet(pet1, center1)
+    # print(worker)
+    # print(adopter1)
+
+
+    # adopter1 = Adopter("Maria", None)
+    # worker.add_pet(pet1, adoption_center)
+    # worker.add_pet(pet2, adoption_center)
+    #
+    # adoption_center.list_available_pets()
+    #
+    # adopter.adopt_pet(pet1, adoption_center)
+    # adoption_center.list_available_pets()
+    #
+    # # adopter.return_pet(pet1, adoption_center)
+    # # adoption_center.list_available_pets()
