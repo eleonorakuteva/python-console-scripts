@@ -1,6 +1,13 @@
 """
 Library Management System
 Description: This program defines a Library system with Users and Librarians who can manage books.
+==========================
+-> Users can borrow and return books.
+-> Librarians can add or remove books from a library.
+-> Tracks total users and libraries.
+-> Validates user library card numbers (must be 8 digits).
+-> Prints current state of libraries and users.
+
 """
 
 class Library:
