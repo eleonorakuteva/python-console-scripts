@@ -1,6 +1,16 @@
 # python-console-scripts
 ***A collection of small Python scripts and console-based exercises for practice and learning.***  
 
+## 🐍 library_system.py  
+This Python script implements a simple **Library Management System** where users can borrow and return books, and librarians can manage the book collection.
+#### 🔎 Includes:
+🔹 Classes and objects (OOP)  
+🔹 Inheritance (Librarian inherits from User)  
+🔹 Class methods and static methods  
+🔹 Conditions and loops  
+🔹 String formatting  
+
+
 ## 🐍 password_report.py  
 This Python script analyzes a given password and generates a detailed report on its composition and estimated strength.  
 #### 🔎 Includes:
@@ -9,6 +19,7 @@ This Python script analyzes a given password and generates a detailed report on 
 - Built-in string methods  
 - Boolean logic  
 - Basic string formatting
+
 
 ## 🐍 calculate_factorial.py  
 This Python script calculates the factorial of a non-negative integer entered by the user via the console.  
@@ -19,6 +30,7 @@ For example:  5! = 5 × 4 × 3 × 2 × 1 = 120
 - Looping and conditional logic  
 - Custom function with docstring  
 - Basic error handling and user guidance
+
 
 ## 🐍 perfect_number.py  
 This Python script checks whether a given positive integer is a perfect number or not.  
