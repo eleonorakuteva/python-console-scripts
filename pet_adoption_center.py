@@ -42,7 +42,7 @@ class Pet:
         return matches
 
     def __repr__(self):
-        return f"{self.name} is a {self.species}, age {self.age}."
+        return f"{self.name}, the {self.species}, age {self.age}."
 
 class Adopter:
     def __init__(self, name:str, adopted_pets_by_user = None):
@@ -53,22 +53,30 @@ class Adopter:
         if pet in center.list_of_pets:
             self.adopted_pets_by_user.append(pet)
             center.list_of_pets.remove(pet)
+            print(f"You successfully adopted {pet}")
         else:
             print(f"The {pet.species.lower()} {pet.name.title()} is NOT in Adoption center - {center.name}.\n"
                   f"You can NOT adopt it from there.")
 
     def return_pet(self, pet, center):
-        center.list_of_pets.append(pet)
-        self.adopted_pets_by_user.remove(pet)
+        if pet in self.adopted_pets_by_user:
+            center.list_of_pets.append(pet)
+            self.adopted_pets_by_user.remove(pet)
+            print(f"You successfully returned {pet} to adoption center - {center.name.title()}.")
+        else:
+            print(f"You can not return pet, that you don't own.")
 
     def user_adopted_pets(self):
-        adopted_pets = [f"{pet}" for pet in self.adopted_pets_by_user]
-        return f"The adopter {self.name} adopted the following animals: {adopted_pets}"
+        if len(self.adopted_pets_by_user) >= 1:
+            adopted_pets = [f"{pet}" for pet in self.adopted_pets_by_user]
+            return f"The adopter {self.name} adopted the following animals:\n-> {"\n-> ".join(adopted_pets)}"
+        else:
+            return f"{adopter1.name.title()} has no adopted pet yet."
 
 
     def __repr__(self):
         return (f"Adopter name: {self.name}.\n"
-                f"Adopted pets: {", ".join(self.adopted_pets_by_user)}.")
+                f"{self.user_adopted_pets()}")
 
 class Worker(Adopter):
 
@@ -113,8 +121,14 @@ if __name__ == "__main__":
 
     adopter1 = Adopter("Ciara")
     adopter1.adopt_pet(pet1, center1)
-    adopter1.user_adopted_pets()
-    # print(adopter1)
+    adopter1.adopt_pet(pet3,center1)
+    adopter1.return_pet(pet1, center1)
+    # adopter1.adopt_pet(pet2,center1)
+    print(adopter1.user_adopted_pets())
+    adopter1.return_pet(pet3,center1)
+    adopter1.adopt_pet(pet1,center1)
+
+    print(adopter1)
 
 
 
