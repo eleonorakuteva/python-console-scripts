@@ -1,6 +1,20 @@
 # python-console-scripts
 ***A collection of small Python scripts and console-based exercises for practice and learning.***  
 
+## 🐍 eight_queens_problem.py
+The Eight Queens Problem is a classic puzzle challenging you to place eight chess queens on an 8x8 chessboard so that no two queens threaten each other (same row, column, or diagonal).   
+This Python script solves this problem and finds all perspective possibilities
+recursively.
+#### 🔎 Includes:
+🔹 Knowledge of recursion   
+🔹 Knowledge backtracking   
+🔹 Pre-actions and post-actions in recursion   
+🔹 Conditions and loops    
+🔹 String formatting  
+🔹 Custom function  
+
+---
+
 ## 🐍 vectors_recursion_tree.py
 This Python script generate all n-bit vectors of 0 and 1 in lexicographic order.
 #### 🔎 Includes:
@@ -11,6 +25,7 @@ This Python script generate all n-bit vectors of 0 and 1 in lexicographic order.
 🔹 Custom function  
 
 --- 
+
 ## 🐍 recursive_rhombus.py  vectors_recursion_tree
 This Python script draws a rhombus, using recursion.
 #### 🔎 Includes:
