@@ -4,7 +4,7 @@
 ## 🐍 recursive_rhombus.py  
 This Python script draws a rhombus, using recursion.
 #### 🔎 Includes:
-🔹 Knowledge about recursion  
+🔹 Knowledge of recursion  
 🔹 Pre-actions in recursion   
 🔹 Post-actions in recursion    
 🔹 String formatting  
