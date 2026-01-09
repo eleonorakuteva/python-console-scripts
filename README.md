@@ -1,7 +1,17 @@
 # python-console-scripts
 ***A collection of small Python scripts and console-based exercises for practice and learning.***  
 
-## 🐍 recursive_rhombus.py  
+## 🐍 vectors_recursion_tree.py
+This Python script generate all n-bit vectors of 0 and 1 in lexicographic order.
+#### 🔎 Includes:
+🔹 Knowledge of recursion  
+🔹 Pre-actions and post-actions in recursion   
+🔹 Conditions and loops    
+🔹 String formatting  
+🔹 Custom function  
+
+--- 
+## 🐍 recursive_rhombus.py  vectors_recursion_tree
 This Python script draws a rhombus, using recursion.
 #### 🔎 Includes:
 🔹 Knowledge of recursion  
@@ -10,9 +20,6 @@ This Python script draws a rhombus, using recursion.
 🔹 String formatting  
 
 --- 
-
-# python-console-scripts
-***A collection of small Python scripts and console-based exercises for practice and learning.***  
 
 ## 🐍 library_system.py  
 This Python script implements a simple **Library Management System** where users can borrow and return books, and librarians can manage the book collection.
